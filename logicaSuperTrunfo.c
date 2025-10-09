@@ -1,122 +1,127 @@
 #include <stdio.h>
-
-// Desafio Super Trunfo - Países
-// Tema 2 - Comparação das Cartas
-// Este código inicial serve como base para o desenvolvimento do sistema de comparação de cartas de cidades. 
-// Siga os comentários para implementar cada parte do desafio.
+#include <stdlib.h>
+#include <time.h>
 
 int main() {
-    // Definição das variáveis para armazenar as propriedades das cidades
-    // Declaração das variáveis para a primeira carta
-    char estado[10], codigocarta[50], nomecidade[50];
-    int pontosturisticos;
-    unsigned long int populacao;
-    float area, pib;
-    int super_poder;
-
-    // Declaração das variáveis para a segunda carta
-    char estado2[10], codigocarta2[50], nomecidade2[50];
-    int pontosturisticos2;
-    unsigned long int populacao2;
-    float area2, pib2;
-    int super_poder2;
-
-    // Entrada de dados para a primeira carta
-    printf("Registro de dados da Carta 1: \n");
-    printf("Digite o estado: ");
-    scanf("%s", estado);
-    printf("Digite o codigo da carta: ");
-    scanf("%s", codigocarta);
-    printf("Digite o nome da cidade: ");
-    scanf("%s", nomecidade);
-    printf("Digite a populacao: ");
-    scanf("%lu", &populacao);
-    printf("Digite a area: ");
-    scanf("%f", &area);
-    printf("Digite o PIB: ");
-    scanf("%f", &pib);
-    printf("Digite os pontos turisticos: ");
-    scanf("%d", &pontosturisticos);
-    printf("\n");
-
-    // Cálculo da densidade populacional e PIB per capita
-    float densidade_populacional = (float) populacao / area;
-    float pib_capita = (float) pib / populacao;
-
-    // Entrada de dados para a segunda carta
-    printf("Registro de dados da Carta 2: \n");
-    printf("Digite o estado: ");
-    scanf("%s", estado2);
-    printf("Digite o codigo da carta: ");
-    scanf("%s", codigocarta2);
-    printf("Digite o nome da cidade: ");
-    scanf("%s", nomecidade2);
-    printf("Digite a populacao: ");
-    scanf("%lu", &populacao2);
-    printf("Digite a area: ");
-    scanf("%f", &area2);
-    printf("Digite o PIB: ");
-    scanf("%f", &pib2);
-    printf("Digite os pontos turisticos: ");
-    scanf("%d", &pontosturisticos2);
-
-    // Cálculo da densidade populacional e PIB per capita da segunda carta
-    float densidade_populacional2 = (float) populacao2 / area2;
-    float pib_capita2 = (float) pib2 / populacao2;
-
-    // Exibição dos dados da primeira carta
-    printf("\nDados da Carta 1:");
-    printf("\nEstado: %s", estado);
-    printf("\nCodigo da Carta: %s", codigocarta);
-    printf("\nNome da Cidade: %s", nomecidade);
-    printf("\nPopulacao: %lu", populacao);
-    printf("\nArea: %.2f km²", area);
-    printf("\nPIB: %.2f bilhões de reais", pib);
-    printf("\nPontos Turisticos: %d", pontosturisticos);
-    printf("\nDensidade Populacional: %.2f Hab/KM²", densidade_populacional);
-    printf("\nPIB per Capita: %.2f Reais\n", pib_capita);
+    //Variaveis gerais
+    int escolhaBelem, escolhaAnanindeua;
+    int ataqueBelem, ataqueAnanindeua;
+    int densidadeDemograficaBelem;
+    int densidadeDemograficaAnanindeua;
+    int valorBelem, valorAnanindeua;
     
-    // Exibição dos dados da segunda carta 
-    printf("\nDados da Carta 2:");
-    printf("\nEstado: %s", estado2);
-    printf("\nCodigo da Carta: %s", codigocarta2);
-    printf("\nNome da Cidade: %s", nomecidade2);
-    printf("\nPopulacao: %lu", populacao2);
-    printf("\nArea: %.2f km²", area2);
-    printf("\nPIB: %.2f bilhões de reais", pib2);
-    printf("\nPontos Turisticos: %d", pontosturisticos2);
-    printf("\nDensidade Populacional: %.2f Hab/KM²", densidade_populacional2);
-    printf("\nPIB per Capita: %.2f Reais\n", pib_capita2);
+    srand (time(0));
 
-    // Comparacao de cartas:
-    char cartavencedora[30] = "carta 1", cartavencedora2[30] = "carta 2";
-    float densidade_populacional_menor = densidade_populacional < densidade_populacional2 ? densidade_populacional : densidade_populacional2;
-
-    super_poder = (unsigned long)populacao + area + pib + pontosturisticos + pib_capita + densidade_populacional_menor;
-    super_poder2 = (unsigned long)populacao2 + area2 + pib2 + pontosturisticos2 + pib_capita2 + densidade_populacional_menor;
-
-    printf("\nComparacao de Cartas:\n");
-    printf("populacao: %s venceu (%d) \n", populacao > populacao2 ? cartavencedora : cartavencedora2, populacao > populacao2);
-    printf("area: %s venceu (%d) \n", area > area2 ? cartavencedora : cartavencedora2, area > area2);
-    printf("pib: %s venceu (%d) \n", pib > pib2 ? cartavencedora : cartavencedora2, pib > pib2);
-    printf("pontosturisticos: %s venceu (%d) \n", pontosturisticos > pontosturisticos2 ? cartavencedora : cartavencedora2, pontosturisticos > pontosturisticos2);
-    printf("densidade populacional: %s venceu (%d) \n", densidade_populacional < densidade_populacional2 ? cartavencedora : cartavencedora2, densidade_populacional < densidade_populacional2);
-    printf("pib per capita: %s venceu (%d) \n", pib_capita > pib_capita2 ? cartavencedora : cartavencedora2, pib_capita > pib_capita2);
-
-    //Super Poder Vencedor:
-    printf("\nSuper Poder: %s venceu (%d) \n", super_poder > super_poder2 ? cartavencedora : cartavencedora2, super_poder > super_poder2);
-
-    //Comparacao de atributo:
-    printf("\nCarta vencedora (Atributo: Populacao): \n");
-    printf("Carta 1 - %s (%s): %lu \n", nomecidade, estado, populacao);
-    printf("Carta 2 - %s (%s): %lu \n", nomecidade2, estado2, populacao2);
-
-    //Condicao para escolher a Carta com atributo vencedor:
-    if (populacao > populacao2) {
-        printf("Resultado: Carta 1 (%s) venceu!", nomecidade);
+    // Menu de escolha do atributo para ataque
+    printf("**Escolha um atributo de ataque**\n");
+    printf("1. Populacao \n");
+    printf("2. Area \n");
+    printf("3. PIB \n");
+    printf("4. Numero de pontos turisticos \n");
+    printf("5. Densidade demografica \n");
+    printf("6. PIB per capita \n");
+    printf("Escolha: ");
+    
+    if (scanf("%d", &escolhaBelem) != 1 || escolhaBelem < 1 || escolhaBelem > 6) {
+        printf("\n##Escolha Invalida! Programa encerrado.##\n");
+        return 0;
     }
+    
+    // Variaval densidade demográfica
+    densidadeDemograficaBelem = rand() % 987654321 + 1;
+    densidadeDemograficaAnanindeua = rand() % 987654321 + 1;
+    
+    // Variavel ataque
+    ataqueBelem = rand() % 987654321 + 1;
+    ataqueAnanindeua = rand() % 987654321 + 1;
+
+
+    // Exibicaoo dos atributos de Belem
+    switch (escolhaBelem) {
+        case 1:
+            printf("\nAtributo de ataque: Populacao - Belém: %d Habitantes \n", ataqueBelem);
+            valorBelem = ataqueBelem;
+        break;
+        case 2:
+            printf("\nAtributo de ataque: Area - Belém: %d km² \n", ataqueBelem);
+            valorBelem = ataqueBelem;
+        break;
+        case 3:
+            printf("\nAtributo de ataque: PIB - Belém: %d Bilhões de reais \n", ataqueBelem);
+            valorBelem = ataqueBelem;
+        break;
+        case 4:
+            printf("\nAtributo de ataque: Pontos Turisticos - Belém: %d \n", ataqueBelem);
+            valorBelem = ataqueBelem;
+        break;
+        case 5:
+            printf("\nAtributo de ataque: Densidade Demografica - Belém: %d Hab/KM² \n", densidadeDemograficaBelem);
+            valorBelem = densidadeDemograficaBelem; 
+        break;
+        case 6:
+            printf("\nAtributo de ataque: PIB per Capita - Belém: R$%d \n", ataqueBelem);
+            valorBelem = ataqueBelem;
+        break;
+    }
+
+    // Exibição dos atributos de Ananindeua
+    escolhaAnanindeua = escolhaBelem;
+
+    switch (escolhaAnanindeua) {
+        case 1:
+            printf("Atributo de ataque: Populacao - Ananindeua: %d Habitantes \n", ataqueAnanindeua);
+            valorAnanindeua = ataqueAnanindeua;
+        break;
+        case 2:
+            printf("Atributo de ataque: Area - Ananindeua: %d km² \n", ataqueAnanindeua);
+            valorAnanindeua = ataqueAnanindeua;
+        break;
+        case 3:
+            printf("Atributo de ataque: PIB - Ananindeua: %d Bilhões de reais \n", ataqueAnanindeua);
+            valorAnanindeua = ataqueAnanindeua;
+        break;
+        case 4:
+            printf("Atributo de ataque: Pontos Turisticos - Ananindeua: %d \n", ataqueAnanindeua);
+            valorAnanindeua = ataqueAnanindeua;
+        break;
+        case 5:
+            printf("Atributo de ataque: Densidade Demografica - Ananindeua: %d Hab/KM² \n", densidadeDemograficaAnanindeua);
+            valorAnanindeua = densidadeDemograficaAnanindeua;
+        break;
+        case 6:
+            printf("Atributo de ataque: PIB per Capita - Ananindeua: R$%d \n", ataqueAnanindeua);
+            valorAnanindeua = ataqueAnanindeua;
+        break;
+    }
+
+
+    // Ressultado da vitória
+    printf("\n###Resultado do Duelo###");
+    
+    // Vencedor densidade demográfica
+    if (escolhaBelem == 5) {
+        if (valorBelem < valorAnanindeua) {
+            printf("***Belém venceu!! (Menor densidade)***\n");
+        }
+        else if (valorAnanindeua < valorBelem) {
+            printf("\n***Ananindeua venceu!! (Menor densidade)***\n");
+        }
+        else {
+            printf("\n##Houve um empate entre as duas cidades!!##\n");
+        }
+    }
+    
+    // Vencedor dos os outros atributos
     else {
-        printf("Resultado: Carta 2 (%s) venceu!", nomecidade2);
+        if (valorBelem > valorAnanindeua) {
+            printf("\n***Belém venceu!! (Maior valor)***\n");
+        }
+        else if (valorAnanindeua > valorBelem) {
+            printf("\n***Ananindeua venceu!! (Maior valor)***\n");
+        }
+        else {
+            printf("\n##Houve um empate entre as duas cidades!!##\n");
+        }
     }
 
     return 0;
